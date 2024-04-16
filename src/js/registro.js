@@ -3,6 +3,7 @@ import { auth } from './firebaseConfig.js';
 
 
 
+// Registro por Correo y Contraseña
 const emailInput = document.getElementById('email');
 const passwordInput = document.getElementById('password');
 const confirmPasswordInput = document.getElementById('confirmPassword');
@@ -40,4 +41,10 @@ btnSiguiente.addEventListener('click', async (e) => {
         console.log('Error al registrar usuario: ');
         alert("Error al registrar, intentelo de nuevo");
     }
+})
+
+const btnCancel = document.getElementById('btn_cancelar');
+
+btnCancel.addEventListener('click', async () => {
+    window.location.replace('index.html')
 });
