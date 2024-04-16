@@ -16,7 +16,6 @@ form.addEventListener('submit', async (e) => {
     const name = form.name.value;
     const lastName = form.lastname.value;
     const secondLastName = form.secondlastname.value;
-    const professionalID = form.profesionalID.value;
     const phone = form.phone.value;
     const birthday = form.birthday.value;
     const namePlaceWork = form.nameplacework.value;
@@ -33,7 +32,7 @@ form.addEventListener('submit', async (e) => {
         const user = userCredential.user;
 
         // Guardar datos del formulario en Firestore
-        await saveFormDataToFirestore(name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, user.uid);
+        await saveFormDataToFirestore(name, lastName, secondLastName, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, user.uid);
 
         // Limpiar el formulario después del registro
         form.reset();
@@ -46,14 +45,13 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-async function saveFormDataToFirestore(name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, userId) {
+async function saveFormDataToFirestore(name, lastName, secondLastName, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, userId) {
     try {
         // Agregar un nuevo documento a la colección 'users' en Firestore
         await addDoc(collection(db, 'users'), {
             name: name,
             lastName: lastName,
             secondLastName: secondLastName,
-            professionalID: professionalID,
             phone: phone,
             birthday: birthday,
             namePlaceWork: namePlaceWork,

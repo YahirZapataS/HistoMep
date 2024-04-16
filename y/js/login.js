@@ -31,11 +31,16 @@ btnLogin.addEventListener('click', async () => {
 
 const registerMed = document.getElementById('btn_RegisterDoc');
 const registerPac = document.getElementById('btn_RegisterPac');
+const resetPassword = document.getElementById('forgotpass');
 
 registerMed.addEventListener('click', async () => {
-    window.location.replace('registro.html');
-})
+    window.location.replace('registroDoctor.html');
+});
 
 registerPac.addEventListener('click', async () => {
-    window.location.replace('registro.html');
+    window.location.replace('registroPaciente.html');
+});
+
+resetPassword.addEventListener('click', async () => {
+    window.location.replace('recuperarContraseña.html')
 });

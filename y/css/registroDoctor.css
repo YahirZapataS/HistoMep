@@ -2,27 +2,38 @@ body {
     font-family: "Inter";
     font-style: italic;
     font-weight: bold;
-  }
-
-  .container {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
-    margin-top: 100px;
-    padding: 100px;
-    border: 1px solid #ccc;
-    border-radius: 15px;
-    background-color: #EDF0F9;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-  }
-
-.container h2 {
-    text-align: center;
-    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.container input {
+.logo_marca {
+    width: 300px;
+    height: auto;
+    align-items: center;
+    margin: 20px;
+}
+
+.form-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #EDF0F9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+.form-flex h2 {
+    font-size: 35px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.form-flex input {
     text-align: center;
     border-color: #0066FF;
     border-top: #000000;
@@ -30,30 +41,37 @@ body {
     border-right: #000000;
     background-color: #EAEAEA;
     border-radius: 5px;
-    width: 350px;
     height: 40px;
+    width: 45%;
+    margin-bottom: 20px;
 }
 
 input:focus {
     outline: none;
 }
 
-.container button {
+.form-flex button {
     border-radius: 5px;
     color: #FFFFFF;
     border-color: #0066FF;
     background-color: #0066FF;
-    width: 250px;
+    width: 100%;
     height: 40px;
     font-size: 15px;
     font-weight: bold;
+    margin-top: 20px;
 }
 
-.container ::placeholder {
+#btn_cancelar {
+    border-color: rgb(143, 6, 6);
+    background-color: rgb(143, 6, 6);
+}
+
+.form-flex ::placeholder {
     font-size: 20px;
 }
 
-.container input[type="checkbox"] {
+.form-flex input[type="checkbox"] {
     display: inline;
     align-items: center;
     width: 20px;
