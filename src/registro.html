@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/indexStyle.css">
+    <link rel="stylesheet" href="css/style_formulario_registro_doctor.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
@@ -22,7 +22,22 @@
                 required><br><br><br>
             <input type="checkbox" id="showpassword">
             <label for="showpassword">Mostrar Contraseña</label><br><br>
-            <button type="button" id="btn_siguiente" class="buttonCenter">Siguiente</button><br><br>
+            <p id="supportText">Datos Personales/Profesionales</p>
+            <input type="text" id="name" name="username" placeholder="Nombre(s)"><br><br>
+            <input type="text" name="lastname" id="lastname" placeholder="Apellido Paterno"><br><br>
+            <input type="text" name="secondlastname" id="secondlastname" placeholder="Apellido Materno"><br><br>
+            <input type="number" name="profesionalID" id="professionalID" placeholder="Cédula Profesional"><br><br>
+            <input type="number" name="phone" id="phone" placeholder="Teléfono"><br><br>
+            <input type="date" name="birthday" id="birthday" placeholder="Fecha de nacimiento"><br><br>
+            <p id="supportText">Datos del lugar de trabajo</p>
+            <input type="text" name="nameplacework" id="nameplacework" placeholder="Nombre del lugar de trabajo"><br><br>
+            <input type="text" name="street" id="street" placeholder="Calle"><br><br>
+            <input type="number" name="postalcode" id="postalcode" placeholder="Código Postal"><br><br>
+            <input type="text" name="colonia" id="colonia" placeholder="Colonia"><br><br>
+            <input type="text" name="location" id="location" placeholder="Localidad"><br><br>
+            <input type="text" name="city" id="city" placeholder="Ciudad"><br><br>
+            <input type="text" name="state" id="state" placeholder="Estado"><br><br>
+            <button type="submit" id="btn_siguiente" class="buttonCenter">Siguiente</button><br><br>
             <button type="button" id="btn_cancelar" class="buttonPositionL">Cancelar</button>
         </form>
     </div>
