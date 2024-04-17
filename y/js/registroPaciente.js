@@ -1,7 +1,6 @@
 import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js';
 import { addDoc, collection } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
 import { auth, db } from './firebaseConfig.js';
-import QRCode from 'qrcode-generator';
 
 
 const form = document.getElementById('registroForm');
@@ -38,10 +37,9 @@ form.addEventListener('submit', async (e) => {
         // Guardar datos del formulario en Firestore
         await saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid, IMP);
 
-        window.location.href = 'viewQR.html?imp=' + encodeURIComponent(IMP);
-
         // Limpiar el formulario después del registro
         form.reset();
+        
     } catch (error) {
         console.error('Error al registrar usuario:', error);
         alert('Hubo un error al registrar el usuario. Por favor, inténtelo de nuevo.');
@@ -92,14 +90,6 @@ function generarIMP(apellidoPaterno, apellidoMaterno, nombre) {
 
     // Concatenar todas las partes para formar el IMP
     const IMP = primeraLetraApellidoPaterno + primeraLetraApellidoMaterno + dosPrimerasLetrasNombre + numeroConCeros + letraAleatoria;
-
-    const qr = QRCode(0, 'L');
-    qr.addData(IMP);
-    qr.make();
-    const qrImage = qr.createImgTag();
-
-    // Mostrar el código QR en la página
-    document.getElementById('qrCodeContainer').innerHTML = qrImage;
 
     return IMP;
 }
