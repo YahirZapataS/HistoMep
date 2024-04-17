@@ -1,15 +1,13 @@
 import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js';
 import { addDoc, collection } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
-import { auth, db } from './firebaseConfig.js'; // Asegúrate de importar correctamente tu configuración de Firebase
+import { auth, db } from './firebaseConfig.js';
+import QRCode from 'qrcode-generator';
 
 
 const form = document.getElementById('registroForm');
 const passwordInput = document.getElementById('password');
 const confirmPasswordInput = document.getElementById('confirmPassword');
 const showPasswordCheckbox = document.getElementById('showpassword');
-const apPaterno = document.getElementById('lastname');
-const apMaterno = document.getElementById('secondlastname');
-const nombre = document.getElementById('name');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -38,23 +36,23 @@ form.addEventListener('submit', async (e) => {
         const IMP = generarIMP(lastName, secondLastName, name);
 
         // Guardar datos del formulario en Firestore
-        await saveFormDataToFirestore(name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid);
+        await saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid, IMP);
+
+        window.location.href = 'viewQR.html?imp=' + encodeURIComponent(IMP);
 
         // Limpiar el formulario después del registro
         form.reset();
-
-        // Redirigir al usuario a una página de éxito
-        window.location.href = 'viewIMP.html';
     } catch (error) {
         console.error('Error al registrar usuario:', error);
         alert('Hubo un error al registrar el usuario. Por favor, inténtelo de nuevo.');
     }
 });
 
-async function saveFormDataToFirestore(name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId) {
+async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, IMP) {
     try {
         // Agregar un nuevo documento a la colección 'users' en Firestore
         await addDoc(collection(db, 'users'), {
+            email: email,
             name: name,
             lastName: lastName,
             secondLastName: secondLastName,
@@ -66,6 +64,7 @@ async function saveFormDataToFirestore(name, lastName, secondLastName, phone, bi
             location: location,
             city: city,
             state: state,
+            emailExtra: emailExtra,
             userId: userId,
             IMP: IMP
         });
@@ -76,6 +75,34 @@ async function saveFormDataToFirestore(name, lastName, secondLastName, phone, bi
     }
 }
 
+function generarIMP(apellidoPaterno, apellidoMaterno, nombre) {
+
+    const primeraLetraApellidoPaterno = apellidoPaterno.charAt(0);
+
+    const primeraLetraApellidoMaterno = apellidoMaterno.charAt(0);
+
+    const dosPrimerasLetrasNombre = nombre.substring(0, 2).toUpperCase();
+
+    const numeroAleatorio = Math.floor(Math.random() * 1000);
+    const numeroConCeros = ('00' + numeroAleatorio).slice(-3);
+
+    // Generar una letra aleatoria
+    const letrasAleatorias = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const letraAleatoria = letrasAleatorias.charAt(Math.floor(Math.random() * letrasAleatorias.length));
+
+    // Concatenar todas las partes para formar el IMP
+    const IMP = primeraLetraApellidoPaterno + primeraLetraApellidoMaterno + dosPrimerasLetrasNombre + numeroConCeros + letraAleatoria;
+
+    const qr = QRCode(0, 'L');
+    qr.addData(IMP);
+    qr.make();
+    const qrImage = qr.createImgTag();
+
+    // Mostrar el código QR en la página
+    document.getElementById('qrCodeContainer').innerHTML = qrImage;
+
+    return IMP;
+}
 
 showPasswordCheckbox.addEventListener('change', function () {
     if (this.checked) {
@@ -86,32 +113,6 @@ showPasswordCheckbox.addEventListener('change', function () {
         confirmPasswordInput.type = 'password';
     }
 });
-
-function generarIMP(apPaterno, apMaterno, nombre){
-    const firsWordLastName = apPaterno.charAt(0);
-    const firstWordSecondLastName = apMaterno.charAt(0);
-    const twoWordsName = nombre.substring(0, 2);
-
-    const numRegister = obtenerNumeroRegistro();
-    const randomWord = generarLetraAleatoria();
-
-    const IMP = `${firsWordLastName}${firstWordSecondLastName}${twoWordsName}${numRegister}${randomWord}`;
-    return IMP;
-}
-
-// Contador
-let contadorRegistro = 0;
-function obtenerNumeroRegistro() {
-    contadorRegistro++;
-    return contadorRegistro.toString().padStart(3, '0');
-}
-
-// Generar letra aleatoria
-function generarLetraAleatoria() {
-    const words = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const ind = Math.floor(Math.random() * words.length);
-    return words.charAt(ind);
-}
 
 // Boton Cancelar
 const btnCancel = document.getElementById('btn_cancelar');

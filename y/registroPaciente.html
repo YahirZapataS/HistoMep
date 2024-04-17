@@ -9,7 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <title>Registro</title>
-    
+    <script type="module" src="js/registroPaciente.js"></script>
+    <script src="js/qrcode.min.js"></script>
+
 </head>
 
 <body>
@@ -26,7 +28,8 @@
             <p id="supportText">Datos Personales</p>
             <input type="text" id="name" name="username" placeholder="Nombre(s)" required><br><br>
             <input type="text" name="lastname" id="lastname" placeholder="Apellido Paterno" required><br><br>
-            <input type="text" name="secondlastname" id="secondlastname" placeholder="Apellido Materno" required><br><br>
+            <input type="text" name="secondlastname" id="secondlastname" placeholder="Apellido Materno"
+                required><br><br>
             <input type="date" name="birthday" id="birthday" placeholder="Fecha de nacimiento"><br><br>
             <p id="supportText">Datos de contacto</p>
             <input type="number" name="phone" id="phone" placeholder="Teléfono" required><br><br>
@@ -41,7 +44,6 @@
             <button type="button" id="btn_cancelar">Cancelar</button>
         </form>
     </div>
-    <script type="module" src="js/registroPaciente.js"></script>
 </body>
 
 </html>

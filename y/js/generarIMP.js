@@ -1,27 +1,12 @@
-export function generarIMP(){
-    const firsWordLastName = apPaterno.charAt(0);
-    const firstWordSecondLastName = apMaterno.charAt(0);
-    const twoWordsName = nombre.substring(0, 2);
+// Obtener el IMP de la URL
+const urlParams = new URLSearchParams(window.location.search);
+const imp = urlParams.get('imp');
 
-    const numRegister = obtenerNumeroRegistro();
-    const randomWord = generarLetraAleatoria();
+// Generar el código QR con el IMP obtenido
+const qr = QRCode(0, 'L');
+qr.addData(imp);
+qr.make();
+const qrImage = qr.createImgTag();
 
-    const IMP = `${firsWordLastName}${firstWordSecondLastName}${twoWordsName}${numRegister}${randomWord}`;
-    return IMP;
-
-    console.log(IMP);
-}
-
-// Contador
-let contadorRegistro = 0;
-function obtenerNumeroRegistro() {
-    contadorRegistro++;
-    return contadorRegistro.toString().padStart(3, '0');
-}
-
-// Generar letra aleatoria
-function generarLetraAleatoria() {
-    const words = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const ind = Math.floor(Math.random() * words.length);
-    return words.charAt(ind);
-}
+// Mostrar el código QR en la página
+document.getElementById('qrcode').innerHTML = qrImage;
