@@ -24,7 +24,7 @@
                 required><br><br><br>
             <input type="checkbox" id="showpassword">
             <label for="showpassword">Mostrar Contraseña</label><br><br>
-            <p id="supportText">Datos Personales</p>
+            <p id="supportText">Datos Personales</p><br>
             <input type="text" id="name" name="username" placeholder="Nombre(s)" required><br><br>
             <input type="text" name="lastname" id="lastname" placeholder="Apellido Paterno" required><br><br>
             <input type="text" name="secondlastname" id="secondlastname" placeholder="Apellido Materno"
@@ -39,6 +39,23 @@
             <input type="text" name="city" id="city" placeholder="Ciudad"><br><br>
             <input type="text" name="state" id="state" placeholder="Estado"><br><br>
             <input type="email" name="emailExtra" id="emailExtra" placeholder="Correo Alternativo (opcional)"><br><br>
+            <p id="supportText">Información Médica</p>
+            <input type="number" name="weight" id="weight" placeholder="Peso (kg)"><br><br>
+            <input type="number" name="height" id="height" placeholder="Estatura (Cm)"><br><br>
+            <div class="select-wrapper">
+                <label for="opcionD">Diabético(a)</label>
+                <select id="opcionD" name="opcionD">
+                    <option value="opcion1D">Sí</option>
+                    <option value="opcion2D">No</option>
+                </select>
+            </div>
+            <div class="select-wrapper">
+                <label for="opcionH">Hipertenso(a)</label>
+                <select id="opcionH" name="opcionH">
+                    <option value="opcionH1">Sí</option>
+                    <option value="opcionH2">No</option>
+                </select>
+            </div>
             <button type="submit" id="btn_siguiente">Siguiente</button><br><br>
             <button type="button" id="btn_cancelar">Cancelar</button>
         </form>

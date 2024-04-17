@@ -26,6 +26,8 @@ form.addEventListener('submit', async (e) => {
     const city = form.city.value;
     const state = form.state.value;
     const emailExtra = form.emailExtra.value;
+    const opcionD = form.opcionD.value;
+    const opcionH = form.opcionH.value;
 
     try {
         // Registrar un nuevo usuario con correo y contraseña
@@ -35,8 +37,9 @@ form.addEventListener('submit', async (e) => {
         const IMP = generarIMP(lastName, secondLastName, name);
 
         // Guardar datos del formulario en Firestore
-        await saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid, IMP);
+        await saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid, opcionD, opcionH, IMP);
 
+        alert('Usuario Guardado con Éxito');
         // Limpiar el formulario después del registro
         form.reset();
         
@@ -46,7 +49,7 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, IMP) {
+async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, opcionD, opcionH,IMP) {
     try {
         // Agregar un nuevo documento a la colección 'users' en Firestore
         await addDoc(collection(db, 'users'), {
@@ -64,6 +67,8 @@ async function saveFormDataToFirestore(email, name, lastName, secondLastName, ph
             state: state,
             emailExtra: emailExtra,
             userId: userId,
+            opcionD: opcionD,
+            opcionH: opcionH,
             IMP: IMP
         });
         console.log('Datos del usuario guardados en Firestore');
@@ -75,9 +80,9 @@ async function saveFormDataToFirestore(email, name, lastName, secondLastName, ph
 
 function generarIMP(apellidoPaterno, apellidoMaterno, nombre) {
 
-    const primeraLetraApellidoPaterno = apellidoPaterno.charAt(0);
+    const primeraLetraApellidoPaterno = apellidoPaterno.charAt(0).toUpperCase();
 
-    const primeraLetraApellidoMaterno = apellidoMaterno.charAt(0);
+    const primeraLetraApellidoMaterno = apellidoMaterno.charAt(0).toUpperCase();
 
     const dosPrimerasLetrasNombre = nombre.substring(0, 2).toUpperCase();
 

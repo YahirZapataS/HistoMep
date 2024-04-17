@@ -10,7 +10,7 @@ header {
     background-color: #EAEAEA;
     color: black;
     padding: 10px 0;
-    padding-left: 100px;
+    padding-left: 550px;
 }
 
 nav ul {
@@ -41,7 +41,7 @@ nav ul li a:hover {
 }
 
 img {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     align-items: center;
 }

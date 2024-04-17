@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js';
 import { addDoc, collection } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
-import { auth, db } from './firebaseConfig.js'; // Asegúrate de importar correctamente tu configuración de Firebase
+import { auth, db } from './firebaseConfig.js';
 
 const form = document.getElementById('registroForm');
 const passwordInput = document.getElementById('password');
@@ -33,23 +33,25 @@ form.addEventListener('submit', async (e) => {
         const user = userCredential.user;
 
         // Guardar datos del formulario en Firestore
-        await saveFormDataToFirestore(name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, user.uid);
+        await saveFormDataToFirestore(email, name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, user.uid);
 
         // Limpiar el formulario después del registro
         form.reset();
 
         // Redirigir al usuario a una página de éxito
-        window.location.href = 'pacientes.html';
+        window.location.href = 'login.html';
+
     } catch (error) {
         console.error('Error al registrar usuario:', error);
         alert('Hubo un error al registrar el usuario. Por favor, inténtelo de nuevo.');
     }
 });
 
-async function saveFormDataToFirestore(name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, userId) {
+async function saveFormDataToFirestore(email, name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, userId) {
     try {
         // Agregar un nuevo documento a la colección 'users' en Firestore
         await addDoc(collection(db, 'doctors'), {
+            email: email,
             name: name,
             lastName: lastName,
             secondLastName: secondLastName,
@@ -63,7 +65,7 @@ async function saveFormDataToFirestore(name, lastName, secondLastName, professio
             location: location,
             city: city,
             state: state,
-            userId: userId // Incluir el UID del usuario como referencia
+            userId: userId
         });
         console.log('Datos del usuario guardados en Firestore');
     } catch (error) {
