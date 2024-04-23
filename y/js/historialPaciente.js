@@ -5,9 +5,10 @@ async function mostrarDetallePaciente() {
     // Obtener el IMP del paciente de la URL
     const urlParams = new URLSearchParams(window.location.search);
     const pacienteIMP = urlParams.get('userId');
+    const pacienteID = urlParams.get('userId');
 
     try {
-        const docSnap = await getDoc(doc(db, 'users', pacienteIMP));
+        const docSnap = await getDoc(doc(db, 'users', pacienteID));
         if (docSnap.exists()) {
             const pacienteData = docSnap.data();
             const pacienteInfoContainer = document.getElementById('pacienteInfo');

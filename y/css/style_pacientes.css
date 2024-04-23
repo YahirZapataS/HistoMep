@@ -9,7 +9,18 @@ body {
 header {
     color: black;
     padding: 10px 0;
+    padding-left: 90rem;
+}
+
+.slideUp {
+    color: black;
+    padding: 10px 0;
     padding-left: 550px;
+}
+
+.profile-icon img {
+    border-radius: 50%;
+    align-items: center;
 }
 
 nav ul {
