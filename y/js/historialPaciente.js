@@ -4,7 +4,7 @@ import { db } from './firebaseConfig.js';
 async function mostrarDetallePaciente() {
     // Obtener el IMP del paciente de la URL
     const urlParams = new URLSearchParams(window.location.search);
-    const pacienteIMP = urlParams.get('IMP');
+    const pacienteIMP = urlParams.get('userId');
 
     try {
         const docSnap = await getDoc(doc(db, 'users', pacienteIMP));
@@ -25,7 +25,7 @@ async function mostrarDetallePaciente() {
             pacienteInfoContainer.appendChild(nacimientoPaciente);
             pacienteInfoContainer.appendChild(telefonoPaciente);
         } else {
-            console.log('No se encontró información para el paciente con el IMP proporcionado.');
+            console.log('No se encontró información para el paciente con el ID proporcionado.');
         }
     } catch (error) {
         console.error('Error al obtener la información del paciente:', error);

@@ -20,7 +20,7 @@ async function mostrarPacientes() {
             botonAbrirHistorial.textContent = 'Abrir';
             botonAbrirHistorial.classList.add('btnAbrirHist');
             botonAbrirHistorial.addEventListener('click', async () => {
-                window.location.href = `historialPaciente.html?IMP=${paciente.IMP}`;
+                window.location.href = `historialPaciente.html?IMP=${paciente.userId}`;
             });
 
             pacienteCard.appendChild(nombrePaciente);
