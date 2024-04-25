@@ -4,8 +4,8 @@ import { db } from './firebaseConfig.js';
 async function mostrarDetallePaciente() {
     // Obtener el IMP del paciente de la URL
     const urlParams = new URLSearchParams(window.location.search);
-    const pacienteIMP = urlParams.get('userId');
     const pacienteID = urlParams.get('userId');
+    console.log('ID del paciente', pacienteID);
 
     try {
         const docSnap = await getDoc(doc(db, 'users', pacienteID));

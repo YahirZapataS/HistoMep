@@ -42,14 +42,14 @@ form.addEventListener('submit', async (e) => {
         alert('Usuario Guardado con Éxito');
         // Limpiar el formulario después del registro
         form.reset();
-        
+
     } catch (error) {
         console.error('Error al registrar usuario:', error);
         alert('Hubo un error al registrar el usuario. Por favor, inténtelo de nuevo.');
     }
 });
 
-async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, opcionD, opcionH,IMP) {
+async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, opcionD, opcionH, IMP) {
     try {
         // Agregar un nuevo documento a la colección 'users' en Firestore
         await addDoc(collection(db, 'users'), {

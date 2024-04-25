@@ -20,12 +20,20 @@ async function mostrarPacientes() {
             botonAbrirHistorial.textContent = 'Abrir';
             botonAbrirHistorial.classList.add('btnAbrirHist');
             botonAbrirHistorial.addEventListener('click', async () => {
-                window.location.href = `historialPaciente.html?IMP=${paciente.userId}`;
-                window.location.href = `historialPaciente.html?userId=${paciente.userId}`;
+                console.log('ID del paciente', paciente.userId);
+                window.location.href = `historialPaciente.html?id=${paciente.userId}`;
+            });
+
+            const botonAbrirReceta = document.createElement('button');
+            botonAbrirReceta.textContent = 'Ver Recetas';
+            botonAbrirReceta.classList.add('btnAbrirRec');
+            botonAbrirReceta.addEventListener('click', async () => {
+                window.location.href = 'recetas.html';
             });
 
             pacienteCard.appendChild(nombrePaciente);
             pacienteCard.appendChild(botonAbrirHistorial);
+            pacienteCard.appendChild(botonAbrirReceta);
             pacientesContainer.appendChild(pacienteCard);
         });
     } catch (error) {
