@@ -28,7 +28,7 @@ async function mostrarPacientes() {
             botonAbrirReceta.textContent = 'Ver Recetas';
             botonAbrirReceta.classList.add('btnAbrirRec');
             botonAbrirReceta.addEventListener('click', async () => {
-                window.location.href = 'recetas.html';
+                window.location.href = 'crearReceta.html';
             });
 
             pacienteCard.appendChild(nombrePaciente);

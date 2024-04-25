@@ -1,0 +1,21 @@
+body {
+    font-family: "Inter";
+    font-style: italic;
+    font-weight: bold;
+    display: flex;
+
+}
+
+.form-flex input {
+    display: inline;
+    text-align: center;
+    border-color: #0066FF;
+    border-top: #000000;
+    border-left: #000000;
+    border-right: #000000;
+    background-color: #EAEAEA;
+    border-radius: 5px;
+    height: 40px;
+    width: 45%;
+    margin-bottom: 20px;
+}
