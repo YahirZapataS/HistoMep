@@ -39,7 +39,7 @@ form.addEventListener('submit', async (e) => {
         form.reset();
 
         // Redirigir al usuario a una página de éxito
-        window.location.href = 'login.html';
+        window.location.href = 'index.html';
 
     } catch (error) {
         console.error('Error al registrar usuario:', error);

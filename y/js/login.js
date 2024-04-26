@@ -22,6 +22,10 @@ btnLogin.addEventListener('click', async () => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         console.log('Usuario autenticado', userCredential.user);
+        Swal.fire({
+            title: '¡Listo!',
+            text: 'Usuario Registrado con Éxito!'
+        });
         window.location.replace("pacientes.html");
     } catch (error) {
         console.log("Error al iniciar sesión", error.messsage);

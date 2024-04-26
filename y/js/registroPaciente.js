@@ -41,7 +41,10 @@ form.addEventListener('submit', async (e) => {
         // Guardar datos del formulario en Firestore
         await saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid, opcionD, opcionH, weight, height, IMP);
 
-        alert('Usuario Guardado con Éxito');
+        Swal.fire({
+            title: '¡Listo!',
+            text: 'Usuario Registrado con Éxito!'
+        });
         // Limpiar el formulario después del registro
         form.reset();
 

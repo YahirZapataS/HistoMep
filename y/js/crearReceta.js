@@ -12,8 +12,8 @@ function crearCampoMedicamento(event) {
         <div class="medication">
             <input type="text" name="medicine" placeholder="Nombre Medicamento">
             <input type="text" name="dosis" placeholder="Dosis">
-            <input type="number" name="period" placeholder="Periodo (Horas)">
-            <input type="number" name="duration" placeholder="Duración (Días)">
+            <input type="text" name="period" placeholder="Periodo (Horas)">
+            <input type="text" name="duration" placeholder="Duración (Días)">
             <button type="button" class="btnDelete">Eliminar Medicamento</button>
         </div>
     `;
@@ -30,7 +30,7 @@ function crearCampoMedicamento(event) {
 
 btnAgregar.addEventListener('click', crearCampoMedicamento);
 
-btnGuardar.addEventListener('click', async () => {
+/*btnGuardar.addEventListener('click', async () => {
     const medicamentosInputs = content.querySelectorAll('.medication');
 
     const medicamentos = [];
@@ -41,6 +41,37 @@ btnGuardar.addEventListener('click', async () => {
         const dosis = inputs[1].value;
         const periodo = parseInt(inputs[2].value);
         const duracion = parseInt(inputs[3].value);
+
+        medicamentos.push({ medicine, dosis, periodo, duracion });
+    });
+
+    try {
+        await db.collection('recetas').add({ medicamentos });
+        console.log('Receta guardada con éxito');
+    } catch (error) {
+        console.log('Error al guardar la receta');
+        Swal.fire({
+            title: 'Error!',
+            text: 'Receta no guardada. Intentelo de nuevo.'
+        });
+    }
+});*/
+
+btnGuardar.addEventListener('click', async () => {
+    const medicamentosInputs = content.querySelectorAll('.medication');
+
+    const medicamentos = [];
+
+    medicamentosInputs.forEach(medication => {
+        const medicineInput = medication.querySelector('input[name="medicine"]');
+        const dosisInput = medication.querySelector('input[name="dosis"]');
+        const periodoInput = medication.querySelector('input[name="period"]');
+        const duracionInput = medication.querySelector('input[name="duration"]');
+
+        const medicine = medicineInput.value;
+        const dosis = dosisInput.value;
+        const periodo = periodoInput.value;
+        const duracion = duracionInput.value;
 
         medicamentos.push({ medicine, dosis, periodo, duracion });
     });

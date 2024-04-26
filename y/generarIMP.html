@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/generarPaciente.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <title>Registro</title>
+    <script type="module" src="js/generarIMP.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/dist/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <form id="registroForm" class="form-flex">
+            <img src="img/logo.png" class="logo_marca">
+            <h2>Registro Paciente</h2>
+            <input type="email" id="email" name="email" placeholder="Correo Electrónico" required><br><br>
+            <input type="password" name="password" id="password" placeholder="Contraseña" required><br><br>
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirme su contraseña"
+                required><br><br><br>
+            <input type="checkbox" id="showpassword">
+            <label for="showpassword">Mostrar Contraseña</label><br><br>
+            <p id="supportText">Datos Personales</p><br>
+            <input type="text" id="name" name="username" placeholder="Nombre(s)" required><br><br>
+            <input type="text" name="lastname" id="lastname" placeholder="Apellido Paterno" required><br><br>
+            <input type="text" name="secondlastname" id="secondlastname" placeholder="Apellido Materno"
+                required><br><br>
+            <input type="date" name="birthday" id="birthday" placeholder="Fecha de nacimiento"><br><br>
+            <p id="supportText">Datos de contacto</p>
+            <input type="number" name="phone" id="phone" placeholder="Teléfono" required><br><br>
+            <input type="text" name="street" id="street" placeholder="Calle"><br><br>
+            <input type="number" name="postalcode" id="postalcode" placeholder="Código Postal"><br><br>
+            <input type="text" name="colonia" id="colonia" placeholder="Colonia"><br><br>
+            <input type="text" name="location" id="location" placeholder="Localidad"><br><br>
+            <input type="text" name="city" id="city" placeholder="Ciudad"><br><br>
+            <input type="text" name="state" id="state" placeholder="Estado"><br><br>
+            <input type="email" name="emailExtra" id="emailExtra" placeholder="Correo Alternativo (opcional)"><br><br>
+            <p id="supportText">Información Médica</p>
+            <input type="number" name="weight" id="weight" placeholder="Peso (kg)"><br><br>
+            <input type="number" name="height" id="height" placeholder="Estatura (Cm)"><br><br>
+            <div class="select-wrapper">
+                <label for="opcionD">Diabético(a)</label>
+                <select id="opcionD" name="opcionD">
+                    <option value="opcion1D">Sí</option>
+                    <option value="opcion2D">No</option>
+                </select>
+            </div>
+            <div class="select-wrapper">
+                <label for="opcionH">Hipertenso(a)</label>
+                <select id="opcionH" name="opcionH">
+                    <option value="opcionH1">Sí</option>
+                    <option value="opcionH2">No</option>
+                </select>
+            </div>
+            <button type="submit" id="btn_siguiente">Siguiente</button><br><br>
+            <button type="button" id="btn_cancelar">Cancelar</button>
+        </form>
+    </div>
+</body>
+
+</html>
