@@ -8,17 +8,19 @@ body {
 
 header {
     color: black;
+    background-color: #EDF0F9;
     padding: 10px 0;
-    text-align: center;
     display: flex;
     justify-content: center;
-    background-color: #EAEAEA;
+    margin: 0 auto;
 }
 
 .slideUp {
     color: black;
     padding: 10px 0;
     text-align: center;
+    margin: 0 auto;
+    justify-content: center;
 }
 
 nav ul {
@@ -54,40 +56,61 @@ img {
     align-items: center;
 }
 
-.pacientesContainer {
-    display: flex;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding-left: 10px;
+.content {
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.userInfo {
+    padding: 1px;
+}
+
+.userInfo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.userInfo .name {
     font-size: 20px;
-    margin-left: 50px;
 }
 
-.pacienteCard {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    border-color: #0066FF;
-    border-top: #000000;
-    border-left: #000000;
-    border-right: #000000;
-    background-color: #EAEAEA;
-    height: 40px;
-    width: 45%;
-    margin-bottom: 20px;
+.userInfo id {
+    font-size: 14px;
+    color: #666;
 }
 
-.pacienteCard button {
-    border-radius: 5px;
-    color: #FFFFFF;
-    border-color: #0066FF;
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+th {
     background-color: #0066FF;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.btnCrearReceta {
+    background-color: #0066FF;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    border-color: #0066FF;
     width: 30%;
     height: 40px;
-    font-size: 15px;
     font-weight: bold;
-    margin-top: 20px;
-    margin: 15px;
 }

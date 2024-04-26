@@ -12,16 +12,16 @@ async function mostrarPacientes() {
             const pacienteCard = document.createElement('div');
             pacienteCard.classList.add('pacienteCard');
 
-            const nombrePaciente = document.createElement('div');
-            nombrePaciente.textContent = `${paciente.name} ${paciente.lastName} ${paciente.secondLastName}`;
-            nombrePaciente.classList.add('nombre_Paciente');
+            const nombrePacienteyIMP = document.createElement('div');
+            nombrePacienteyIMP.textContent = `${paciente.name} ${paciente.lastName} ${paciente.secondLastName} ${paciente.IMP}`;
+            nombrePacienteyIMP.classList.add('nombre_Paciente');
 
             const botonAbrirHistorial = document.createElement('button');
             botonAbrirHistorial.textContent = 'Abrir';
             botonAbrirHistorial.classList.add('btnAbrirHist');
             botonAbrirHistorial.addEventListener('click', async () => {
-                console.log('ID del paciente', paciente.userId);
-                window.location.href = `historialPaciente.html?id=${paciente.userId}`;
+                console.log('IMP del paciente', paciente.IMP);
+                window.location.href = `historialPaciente.html?imp=${paciente.IMP}`;
             });
 
             const botonAbrirReceta = document.createElement('button');
@@ -31,7 +31,7 @@ async function mostrarPacientes() {
                 window.location.href = 'crearReceta.html';
             });
 
-            pacienteCard.appendChild(nombrePaciente);
+            pacienteCard.appendChild(nombrePacienteyIMP);
             pacienteCard.appendChild(botonAbrirHistorial);
             pacienteCard.appendChild(botonAbrirReceta);
             pacientesContainer.appendChild(pacienteCard);

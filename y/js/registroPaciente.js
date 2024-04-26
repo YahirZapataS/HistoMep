@@ -28,6 +28,8 @@ form.addEventListener('submit', async (e) => {
     const emailExtra = form.emailExtra.value;
     const opcionD = form.opcionD.value;
     const opcionH = form.opcionH.value;
+    const weight = parseInt(form.weight.value);
+    const height = parseInt(form.height.value);
 
     try {
         // Registrar un nuevo usuario con correo y contraseña
@@ -37,7 +39,7 @@ form.addEventListener('submit', async (e) => {
         const IMP = generarIMP(lastName, secondLastName, name);
 
         // Guardar datos del formulario en Firestore
-        await saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid, opcionD, opcionH, IMP);
+        await saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid, opcionD, opcionH, weight, height, IMP);
 
         alert('Usuario Guardado con Éxito');
         // Limpiar el formulario después del registro
@@ -49,7 +51,7 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, opcionD, opcionH, IMP) {
+async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, opcionD, opcionH, weight, height, IMP) {
     try {
         // Agregar un nuevo documento a la colección 'users' en Firestore
         await addDoc(collection(db, 'users'), {
@@ -69,6 +71,8 @@ async function saveFormDataToFirestore(email, name, lastName, secondLastName, ph
             userId: userId,
             opcionD: opcionD,
             opcionH: opcionH,
+            weight: weight,
+            height: height,
             IMP: IMP
         });
         console.log('Datos del usuario guardados en Firestore');

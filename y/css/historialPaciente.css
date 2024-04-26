@@ -54,40 +54,6 @@ img {
     align-items: center;
 }
 
-.pacientesContainer {
-    display: flex;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding-left: 10px;
-    font-size: 20px;
-    margin-left: 50px;
-}
-
-.pacienteCard {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+h1 {
     text-align: center;
-    border-color: #0066FF;
-    border-top: #000000;
-    border-left: #000000;
-    border-right: #000000;
-    background-color: #EAEAEA;
-    height: 40px;
-    width: 45%;
-    margin-bottom: 20px;
-}
-
-.pacienteCard button {
-    border-radius: 5px;
-    color: #FFFFFF;
-    border-color: #0066FF;
-    background-color: #0066FF;
-    width: 30%;
-    height: 40px;
-    font-size: 15px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin: 15px;
 }

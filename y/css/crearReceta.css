@@ -2,13 +2,63 @@ body {
     font-family: "Inter";
     font-style: italic;
     font-weight: bold;
-    display: flex;
+    margin: 0;
+    padding: 0;
+}
 
+header {
+    color: black;
+    background-color: #EDF0F9;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.slideUp {
+    color: black;
+    padding: 10px 0;
+    text-align: center;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+nav ul li a:hover {
+    background-color: white;
+}
+
+img {
+    width: 70px;
+    height: 70px;
+    align-items: center;
 }
 
 .form-flex input {
-    display: inline;
-    text-align: center;
+    margin-top: 20px;
+    display: inline-block;
     border-color: #0066FF;
     border-top: #000000;
     border-left: #000000;
@@ -16,6 +66,78 @@ body {
     background-color: #EAEAEA;
     border-radius: 5px;
     height: 40px;
-    width: 45%;
+    width: 30%;
     margin-bottom: 20px;
+    outline: none;
+    text-align: center;
+    margin-left: 250px;
+}
+
+.content input {
+    margin-top: 20px;
+    display: inline-block;
+    border-color: #0066FF;
+    border-top: #000000;
+    border-left: #000000;
+    border-right: #000000;
+    background-color: #EAEAEA;
+    border-radius: 5px;
+    height: 40px;
+    width: 30%;
+    margin-bottom: 20px;
+    outline: none;
+    text-align: center;
+    margin-left: 250px;
+}
+
+.btnAgregar {
+    background-color: #0066FF;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    border-color: #0066FF;
+    width: 30%;
+    height: 40px;
+    font-weight: bold;
+    margin-left: 250px;
+    display: block;
+}
+
+.btnGuardar {
+    background-color: #0066FF;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    border-color: #0066FF;
+    width: 30%;
+    height: 40px;
+    font-weight: bold;
+    margin-left: 250px;
+    margin-top: 20px;
+}
+
+.btnDelete {
+    background-color: #0066FF;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+    border-color: #0066FF;
+    width: 10%;
+    height: 40px;
+    font-weight: bold;
 }

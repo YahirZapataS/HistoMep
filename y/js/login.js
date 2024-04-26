@@ -25,7 +25,10 @@ btnLogin.addEventListener('click', async () => {
         window.location.replace("pacientes.html");
     } catch (error) {
         console.log("Error al iniciar sesión", error.messsage);
-        alert('Error al iniciar sesión. Verifique sus credenciales');
+        Swal.fire({
+            title: 'Error!',
+            text: 'Correo o contraseña incorrectos. Intentelo de nuevo.'
+        });
     }
 });
 
