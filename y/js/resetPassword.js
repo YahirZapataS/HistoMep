@@ -2,7 +2,6 @@ import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.9.
 import { auth } from './firebaseConfig.js';
 
 const resetForm = document.getElementById('resetForm');
-const messageText = document.getElementById('message');
 
 resetForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -12,14 +11,16 @@ resetForm.addEventListener('submit', async (event) => {
     try {
         await sendPasswordResetEmail(auth, email);
 
-        messageText.textContent = 'Se ha enviado un correo de restablecimiento de contraseña. Revise su bandeja de entrada';
-        messageText.style.color = 'green';
-
-        window.location.replace('login.html')
+        Swal.fire({
+            title: 'Correo Enviado!',
+            text: 'Revisa tu bandeja de entrada.'
+        });
     } catch (error) {
         console.error(error);
-        messageText.textContent = 'Ha ocurrido un error al intentar restablecer la contraseña. Por favor, intenta de nuevo más tarde.';
-        messageText.style.color = 'red';
+        Swal.fire({
+            title: 'Error!',
+            text: 'No se pudo restablecer la contraseña.'
+        });
     }
 
     resetForm.reset();

@@ -10,7 +10,6 @@ const showPasswordCheckbox = document.getElementById('showpassword');
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    // Obtener los valores del formulario
     const email = form.email.value;
     const password = form.password.value;
     const name = form.name.value;
@@ -28,28 +27,31 @@ form.addEventListener('submit', async (e) => {
     const state = form.state.value;
 
     try {
-        // Registrar un nuevo usuario con correo y contraseña
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        // Guardar datos del formulario en Firestore
         await saveFormDataToFirestore(email, name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, user.uid);
 
-        // Limpiar el formulario después del registro
         form.reset();
 
-        // Redirigir al usuario a una página de éxito
-        window.location.href = 'index.html';
+        Swal.fire({
+            title: 'Listo!',
+            text: 'Usuario registrado con éxito'
+        });
 
     } catch (error) {
         console.error('Error al registrar usuario:', error);
-        alert('Hubo un error al registrar el usuario. Por favor, inténtelo de nuevo.');
+        Swal.fire({
+            title: 'Error!',
+            text: 'El usuario no pudo ser registrado. Intentelo de nuevo.'
+        });
     }
 });
 
+// Agregar un nuevo documento a la colección 'users' en Firestore
 async function saveFormDataToFirestore(email, name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, userId) {
     try {
-        // Agregar un nuevo documento a la colección 'users' en Firestore
+        
         await addDoc(collection(db, 'doctors'), {
             email: email,
             name: name,
