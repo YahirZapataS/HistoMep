@@ -58,3 +58,40 @@ img {
 h1 {
     text-align: center;
 }
+
+.patientInfo {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding-left: 10px;
+    font-size: 20px;
+    flex-wrap: wrap;
+    margin-left: 50px;
+}
+
+.patientInfo {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-color: #0066FF;
+    border-top: #000000;
+    border-left: #000000;
+    border-right: #000000;
+    background-color: #EAEAEA;
+    height: 100px;
+    width: 30%;
+}
+
+#btnBack {
+    border-radius: 8px;
+    color: #FFFFFF;
+    border-color: #0066FF;
+    background-color: #0066FF;
+    width: 10%;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-left: 5%;
+    margin-top: 25%;
+}

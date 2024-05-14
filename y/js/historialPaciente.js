@@ -1,43 +1,56 @@
 import { db } from './firebaseConfig.js';
-import { getDoc, doc  } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
+import { getDocs, query, collection, where } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
 
 // Obtener el ID del paciente de la URL
 const urlParams = new URLSearchParams(window.location.search);
-const pacienteId = urlParams.get('idp');
+const pacienteId = urlParams.get('imp');
+console.log(pacienteId);
 
-// Llamar a la función para mostrar los datos del paciente
-if (pacienteId) {
-    mostrarDetallePaciente(pacienteId);
-} else {
-    console.log('No se proporcionó un ID de paciente válido en la URL.');
-}
-
-async function mostrarDetallePaciente(pacienteId) {
+async function mostrarDetallePaciente() {
     try {
-        const docSnap = await getDoc(doc(db, 'users', pacienteId));
-        console.log(pacienteId);
-        if (docSnap.exists()) {
-            const pacienteData = docSnap.data().get();
-            const pacienteInfoContainer = document.getElementById('pacienteInfo');
+        const q = query(collection(db, 'users'), where('IMP', '==', pacienteId));
+        const querySnapshot = await getDocs(q);
 
-            const nombrePaciente = document.createElement('p');
-            nombrePaciente.textContent = `Nombre: ${pacienteData.name} ${pacienteData.lastName} ${pacienteData.secondLastName}`;
+        const patientInfoContainer = document.getElementById('pacienteInfo');
+        patientInfoContainer.innerHTML = '';
 
-            const nacimientoPaciente = document.createElement('p');
-            nacimientoPaciente.textContent = `Fecha de nacimiento: ${pacienteData.birthday}`;
+        querySnapshot.forEach((doc) => {
+            const patient = doc.data();
+            const patientInfo = document.createElement('div');
+            patientInfo.classList.add('patienteInformationCard');
 
-            const telefonoPaciente = document.createElement('p');
-            telefonoPaciente.textContent = `Teléfono: ${pacienteData.phone}`;
+            const namePatient = document.createElement('div');
+            namePatient.textContent =  `Nombre(s): ${patient.name}`;
+            const lastNamePatient = document.createElement('div');
+            lastNamePatient.textContent = `Apellido Paterno: ${patient.lastName}`;
+            const secondLastNamePatient = document.createElement('div');
+            secondLastNamePatient.textContent = `Apellido Materno: ${patient.secondLastName}`;
 
-            pacienteInfoContainer.appendChild(nombrePaciente);
-            pacienteInfoContainer.appendChild(nacimientoPaciente);
-            pacienteInfoContainer.appendChild(telefonoPaciente);
-        } else {
-            console.log('No se encontró información para el paciente con el ID proporcionado.');
-        }
+            const impPatient = document.createElement('div');
+            impPatient.textContent = `IMP: ${patient.IMP}`;
+            impPatient.classList.add('impPatient');
+
+            const moreInfoPatient = document.createElement('div');
+            moreInfoPatient.textContent = `Fecha de Nacimiento: ${patient.birthday}`;
+
+            patientInfo.appendChild(namePatient);
+            patientInfo.appendChild(lastNamePatient);
+            patientInfo.appendChild(secondLastNamePatient);
+            patientInfo.appendChild(impPatient);
+            patientInfo.appendChild(moreInfoPatient);
+            patientInfoContainer.appendChild(patientInfo);
+        })
     } catch (error) {
-        console.error('Error al obtener la información del paciente:', error);
+        console.log('Error al obtener la información del paciente')
     }
 }
 
 mostrarDetallePaciente();
+
+// Btn Volver
+const btnBack = document.getElementById('btnBack');
+btnBack.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    window.location.replace('pacientes.html');
+})

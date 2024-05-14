@@ -23,8 +23,8 @@ async function mostrarPacientes() {
             botonAbrirHistorial.textContent = 'Abrir';
             botonAbrirHistorial.classList.add('btnAbrirHist');
             botonAbrirHistorial.addEventListener('click', async () => {
-                console.log('Apellido del paciente', paciente.idp);
-                window.location.href = `historialPaciente.html?idp=${paciente.idp}`;
+                console.log('IMP del paciente', paciente.IMP);
+                window.location.href = `historialPaciente.html?imp=${paciente.IMP}`;
             });
 
             const botonAbrirReceta = document.createElement('button');
@@ -47,10 +47,10 @@ async function mostrarPacientes() {
 
 mostrarPacientes();
 
-Swal.fire({
+/*Swal.fire({
     title: '¡Bienvenido!',
     text: 'Aquí se muestran todos tus pacientes, ¡que tenga buen día!'
-})
+})*/
 
 
 
