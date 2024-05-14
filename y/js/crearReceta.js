@@ -30,32 +30,6 @@ function crearCampoMedicamento(event) {
 
 btnAgregar.addEventListener('click', crearCampoMedicamento);
 
-/*btnGuardar.addEventListener('click', async () => {
-    const medicamentosInputs = content.querySelectorAll('.medication');
-
-    const medicamentos = [];
-
-    medicamentosInputs.forEach(medication => {
-        const inputs = medication.querySelectorAll('input');
-        const medicine = inputs[0].value;
-        const dosis = inputs[1].value;
-        const periodo = parseInt(inputs[2].value);
-        const duracion = parseInt(inputs[3].value);
-
-        medicamentos.push({ medicine, dosis, periodo, duracion });
-    });
-
-    try {
-        await db.collection('recetas').add({ medicamentos });
-        console.log('Receta guardada con éxito');
-    } catch (error) {
-        console.log('Error al guardar la receta');
-        Swal.fire({
-            title: 'Error!',
-            text: 'Receta no guardada. Intentelo de nuevo.'
-        });
-    }
-});*/
 
 btnGuardar.addEventListener('click', async () => {
     const medicamentosInputs = content.querySelectorAll('.medication');

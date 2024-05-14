@@ -4,5 +4,8 @@
     "puppeteer": "^22.6.5",
     "qrcode": "^1.5.3",
     "qrcode-generator": "^1.4.4"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }

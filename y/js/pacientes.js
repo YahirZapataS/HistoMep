@@ -47,13 +47,6 @@ async function mostrarPacientes() {
 
 mostrarPacientes();
 
-/*Swal.fire({
-    title: '¡Bienvenido!',
-    text: 'Aquí se muestran todos tus pacientes, ¡que tenga buen día!'
-})*/
-
-
-
 // Cerrar Sesión
 const btnLogout = document.getElementById('btnLogout');
 btnLogout.addEventListener('click', async (e) => {
