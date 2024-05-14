@@ -13,15 +13,18 @@ async function mostrarPacientes() {
             pacienteCard.classList.add('pacienteCard');
 
             const nombrePacienteyIMP = document.createElement('div');
-            nombrePacienteyIMP.textContent = `${paciente.name} ${paciente.lastName} ${paciente.secondLastName} ${paciente.IMP}`;
-            nombrePacienteyIMP.classList.add('nombre_Paciente');
+            nombrePacienteyIMP.textContent = `${paciente.name} ${paciente.lastName} ${paciente.secondLastName}`;
+            nombrePacienteyIMP.classList.add('nombre_Patient');
+            const impPatient = document.createElement('div');
+            impPatient.textContent = `${paciente.IMP}`
+            impPatient.classList.add('impPatient');
 
             const botonAbrirHistorial = document.createElement('button');
             botonAbrirHistorial.textContent = 'Abrir';
             botonAbrirHistorial.classList.add('btnAbrirHist');
             botonAbrirHistorial.addEventListener('click', async () => {
-                console.log('Apellido del paciente', paciente.lastName);
-                window.location.href = `historialPaciente.html?lastName=${paciente.lastName}`;
+                console.log('Apellido del paciente', paciente.idp);
+                window.location.href = `historialPaciente.html?idp=${paciente.idp}`;
             });
 
             const botonAbrirReceta = document.createElement('button');
@@ -32,6 +35,7 @@ async function mostrarPacientes() {
             });
 
             pacienteCard.appendChild(nombrePacienteyIMP);
+            pacienteCard.appendChild(impPatient);
             pacienteCard.appendChild(botonAbrirHistorial);
             pacienteCard.appendChild(botonAbrirReceta);
             pacientesContainer.appendChild(pacienteCard);
@@ -42,3 +46,22 @@ async function mostrarPacientes() {
 }
 
 mostrarPacientes();
+
+Swal.fire({
+    title: '¡Bienvenido!',
+    text: 'Aquí se muestran todos tus pacientes, ¡que tenga buen día!'
+})
+
+
+
+// Cerrar Sesión
+const btnLogout = document.getElementById('btnLogout');
+btnLogout.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    Swal.fire({
+        title: '¡Listo!',
+        text: 'Hemos cerrado tu sesión.'
+    });
+    window.location.replace('index.html');
+});

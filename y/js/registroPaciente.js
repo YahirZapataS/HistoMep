@@ -37,9 +37,11 @@ form.addEventListener('submit', async (e) => {
         const user = userCredential.user;
 
         const IMP = generarIMP(lastName, secondLastName, name);
+        const idp = createID();
+        const userRole = asginedRole();
 
         // Guardar datos del formulario en Firestore
-        await saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid, opcionD, opcionH, weight, height, IMP);
+        await saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid, opcionD, opcionH, weight, height, IMP, idp, userRole);
 
         Swal.fire({
             title: '¡Listo!',
@@ -54,10 +56,10 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, opcionD, opcionH, weight, height, IMP) {
+async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, opcionD, opcionH, weight, height, IMP, idp, userRole) {
     try {
         // Agregar un nuevo documento a la colección 'users' en Firestore
-        await addDoc(collection(db, 'users'), {
+        await addDoc(collection(db, 'patients'), {
             email: email,
             name: name,
             lastName: lastName,
@@ -76,7 +78,9 @@ async function saveFormDataToFirestore(email, name, lastName, secondLastName, ph
             opcionH: opcionH,
             weight: weight,
             height: height,
-            IMP: IMP
+            IMP: IMP,
+            idp: idp,
+            userRole: userRole
         });
         console.log('Datos del usuario guardados en Firestore');
     } catch (error) {
@@ -104,6 +108,16 @@ function generarIMP(apellidoPaterno, apellidoMaterno, nombre) {
     const IMP = primeraLetraApellidoPaterno + primeraLetraApellidoMaterno + dosPrimerasLetrasNombre + numeroConCeros + letraAleatoria;
 
     return IMP;
+}
+
+function createID() {
+    const randomNum = Math.floor(Math.random() * 1000);
+    return randomNum;
+}
+
+function asginedRole() {
+    const roleUser = "patient";
+    return roleUser;
 }
 
 showPasswordCheckbox.addEventListener('change', function () {

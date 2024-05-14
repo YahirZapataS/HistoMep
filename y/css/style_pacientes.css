@@ -6,9 +6,21 @@ body {
     padding: 0;
 }
 
+
+#logo_marca {
+    width: 30%;
+    margin-top: 10px;
+    height: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
 header {
     color: black;
     padding: 10px 0;
+    padding-top: 10px;
+    margin-top: 15px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -49,10 +61,37 @@ nav ul li a:hover {
     background-color: white;
 }
 
-img {
-    width: 70px;
-    height: 70px;
+.menuProfile {
+    align-items:center;
+    margin-left: 100px;
+}
+
+#imgProfile {
+    margin-top: 15px;
     align-items: center;
+    display: inline;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.menuProfile_content {
+    display: inline-block;
+    position: absolute;
+    background-color: #EAEAEA;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.menuProfile_content a {
+    color: #000000;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+#pacientes {
+    padding-left: 50px;
 }
 
 .pacientesContainer {
@@ -92,4 +131,9 @@ img {
     font-weight: bold;
     margin-top: 20px;
     margin: 15px;
+}
+
+.impPatient {
+    font-size: 20px;
+    font-weight: lighter;
 }

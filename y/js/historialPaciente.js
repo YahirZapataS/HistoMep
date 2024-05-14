@@ -3,7 +3,7 @@ import { getDoc, doc  } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase
 
 // Obtener el ID del paciente de la URL
 const urlParams = new URLSearchParams(window.location.search);
-const pacienteId = urlParams.get('lastName');
+const pacienteId = urlParams.get('idp');
 
 // Llamar a la función para mostrar los datos del paciente
 if (pacienteId) {
@@ -17,7 +17,7 @@ async function mostrarDetallePaciente(pacienteId) {
         const docSnap = await getDoc(doc(db, 'users', pacienteId));
         console.log(pacienteId);
         if (docSnap.exists()) {
-            const pacienteData = docSnap.data();
+            const pacienteData = docSnap.data().get();
             const pacienteInfoContainer = document.getElementById('pacienteInfo');
 
             const nombrePaciente = document.createElement('p');
@@ -39,3 +39,5 @@ async function mostrarDetallePaciente(pacienteId) {
         console.error('Error al obtener la información del paciente:', error);
     }
 }
+
+mostrarDetallePaciente();

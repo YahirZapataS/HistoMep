@@ -29,8 +29,9 @@ form.addEventListener('submit', async (e) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
+        const userRole = asginedRole();
 
-        await saveFormDataToFirestore(email, name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, user.uid);
+        await saveFormDataToFirestore(email, name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, userRole, user.uid);
 
         form.reset();
 
@@ -49,7 +50,7 @@ form.addEventListener('submit', async (e) => {
 });
 
 // Agregar un nuevo documento a la colección 'users' en Firestore
-async function saveFormDataToFirestore(email, name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, userId) {
+async function saveFormDataToFirestore(email, name, lastName, secondLastName, professionalID, phone, birthday, namePlaceWork, street, postalCode, colonia, location, city, state, userRole, userId) {
     try {
         
         await addDoc(collection(db, 'doctors'), {
@@ -67,6 +68,7 @@ async function saveFormDataToFirestore(email, name, lastName, secondLastName, pr
             location: location,
             city: city,
             state: state,
+            userRole: userRole,
             userId: userId
         });
         console.log('Datos del usuario guardados en Firestore');
@@ -74,6 +76,11 @@ async function saveFormDataToFirestore(email, name, lastName, secondLastName, pr
         console.error('Error al guardar datos del usuario en Firestore:', error);
         throw error;
     }
+}
+
+function asginedRole() {
+    const roleUser = "doctor";
+    return roleUser;
 }
 
 
