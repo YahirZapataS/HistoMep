@@ -1,18 +1,11 @@
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-import { auth } from './firebaseConfig.js';
+import { auth, db } from './firebaseConfig.js';
+import { getDoc, doc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
 const btnLogin = document.getElementById('btn_login');
 
 const password = document.getElementById('passwordLogin');
 const showPasswordCheckbox = document.getElementById('showpassword');
-
-showPasswordCheckbox.addEventListener('change', function () {
-    if (this.checked) {
-        password.type = 'text';
-    } else {
-        password.type = 'password';
-    }
-});
 
 btnLogin.addEventListener('click', async () => {
 
@@ -46,4 +39,12 @@ registerPac.addEventListener('click', async () => {
 
 resetPassword.addEventListener('click', async () => {
     window.location.replace('recuperarContraseña.html')
+});
+
+showPasswordCheckbox.addEventListener('change', function () {
+    if (this.checked) {
+        password.type = 'text';
+    } else {
+        password.type = 'password';
+    }
 });

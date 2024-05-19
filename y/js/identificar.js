@@ -7,7 +7,7 @@ buscarIMP.addEventListener('click', async () => {
     const imp = inputIMP.value;
 
     try {
-        const querySnapshot = await db.collection('users').where('IMP', '==', imp).get();
+        const querySnapshot = await db.collection('patients').where('IMP', '==', imp).get();
         if (querySnapshot.empty) {
             console.log('No se encontró ningún paciente con el IMP proporcionado');
             return;

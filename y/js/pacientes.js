@@ -3,7 +3,7 @@ import { db } from './firebaseConfig.js';
 
 async function mostrarPacientes() {
     try {
-        const querySnapshot = await getDocs(collection(db, 'users'));
+        const querySnapshot = await getDocs(collection(db, 'patients'));
         const pacientesContainer = document.getElementById('listaPacientes');
         pacientesContainer.innerHTML = '';
 
@@ -51,10 +51,5 @@ mostrarPacientes();
 const btnLogout = document.getElementById('btnLogout');
 btnLogout.addEventListener('click', async (e) => {
     e.preventDefault();
-
-    Swal.fire({
-        title: '¡Listo!',
-        text: 'Hemos cerrado tu sesión.'
-    });
     window.location.replace('index.html');
 });

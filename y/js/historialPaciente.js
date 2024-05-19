@@ -8,7 +8,7 @@ console.log(pacienteId);
 
 async function mostrarDetallePaciente() {
     try {
-        const q = query(collection(db, 'users'), where('IMP', '==', pacienteId));
+        const q = query(collection(db, 'patients'), where('IMP', '==', pacienteId));
         const querySnapshot = await getDocs(q);
 
         const patientInfoContainer = document.getElementById('pacienteInfo');
@@ -53,4 +53,4 @@ btnBack.addEventListener('click', async (e) => {
     e.preventDefault();
 
     window.location.replace('pacientes.html');
-})
+});

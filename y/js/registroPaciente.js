@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js';
 import { addDoc, collection } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
-import { auth, db } from './firebaseConfig.js';
+import { auth, db, file } from './firebaseConfig.js';
+import { getDownloadURL, uploadBytes, ref } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js';
 
 
 const form = document.getElementById('registroForm');
@@ -36,12 +37,14 @@ form.addEventListener('submit', async (e) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
 
-        const IMP = generarIMP(lastName, secondLastName, name);
+        const IMP = impGenerator(lastName, secondLastName, name);
         const idp = createID();
         const userRole = asginedRole();
 
+        const qrImageURL = await generateQRCode(IMP);
+
         // Guardar datos del formulario en Firestore
-        await saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid, opcionD, opcionH, weight, height, IMP, idp, userRole);
+        await saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, user.uid, opcionD, opcionH, weight, height, IMP, idp, userRole, qrImageURL);
 
         Swal.fire({
             title: '¡Listo!',
@@ -56,7 +59,7 @@ form.addEventListener('submit', async (e) => {
     }
 });
 
-async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, opcionD, opcionH, weight, height, IMP, idp, userRole) {
+async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, opcionD, opcionH, weight, height, IMP, idp, userRole, qrImageURL) {
     try {
         // Agregar un nuevo documento a la colección 'users' en Firestore
         await addDoc(collection(db, 'patients'), {
@@ -80,7 +83,8 @@ async function saveFormDataToFirestore(email, name, lastName, secondLastName, ph
             height: height,
             IMP: IMP,
             idp: idp,
-            userRole: userRole
+            userRole: userRole,
+            qrImageURL: qrImageURL
         });
         console.log('Datos del usuario guardados en Firestore');
     } catch (error) {
@@ -89,25 +93,36 @@ async function saveFormDataToFirestore(email, name, lastName, secondLastName, ph
     }
 }
 
-function generarIMP(apellidoPaterno, apellidoMaterno, nombre) {
+function impGenerator(lastName, secondLastName, name) {
 
-    const primeraLetraApellidoPaterno = apellidoPaterno.charAt(0).toUpperCase();
+    const firstWordLastName = lastName.charAt(0).toUpperCase();
 
-    const primeraLetraApellidoMaterno = apellidoMaterno.charAt(0).toUpperCase();
+    const firstWordSecondLastName = secondLastName.charAt(0).toUpperCase();
 
-    const dosPrimerasLetrasNombre = nombre.substring(0, 2).toUpperCase();
+    const twoWordsName = name.substring(0, 2).toUpperCase();
 
-    const numeroAleatorio = Math.floor(Math.random() * 1000);
-    const numeroConCeros = ('00' + numeroAleatorio).slice(-3);
+    const randomNumber = Math.floor(Math.random() * 1000);
+    const numberWithZero = ('00' + randomNumber).slice(-3);
 
     // Generar una letra aleatoria
-    const letrasAleatorias = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const letraAleatoria = letrasAleatorias.charAt(Math.floor(Math.random() * letrasAleatorias.length));
+    const randomWords = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const randomWord = randomWords.charAt(Math.floor(Math.random() * randomWords.length));
 
     // Concatenar todas las partes para formar el IMP
-    const IMP = primeraLetraApellidoPaterno + primeraLetraApellidoMaterno + dosPrimerasLetrasNombre + numeroConCeros + letraAleatoria;
+    const IMP = firstWordLastName + firstWordSecondLastName + twoWordsName + numberWithZero + randomWord;
 
     return IMP;
+}
+
+async function generateQRCode(impValue) {
+    const qrAPIURL = `https://quickchart.io/qr?text=${encodeURIComponent(impValue)}&size=300`;
+    const response = await fetch(qrAPIURL);
+    const blob = await response.blob();
+
+    const storageRef = ref(file, `qrcodes/${impValue}.png`);
+    await uploadBytes(storageRef, blob);
+    const qrImageURL = await getDownloadURL(storageRef);
+    return qrImageURL;
 }
 
 function createID() {
