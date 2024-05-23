@@ -59,7 +59,7 @@ form.addEventListener('submit', async (e) => {
 async function saveFormDataToFirestore(email, name, lastName, secondLastName, phone, birthday, street, postalCode, colonia, location, city, state, emailExtra, userId, opcionD, opcionH, weight, height, IMP) {
     try {
         // Agregar un nuevo documento a la colección 'users' en Firestore
-        await addDoc(collection(db, 'users'), {
+        await addDoc(collection(db, 'patients'), {
             email: email,
             name: name,
             lastName: lastName,
