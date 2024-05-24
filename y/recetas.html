@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.8/dist/sweetalert2.min.css">
-    <title>Recetas</title>
+    <title>Mostrar Recetas</title>
     <script src="js/recetas.js" type="module"></script>
 </head>
 
@@ -23,7 +23,7 @@
             <nav class="slideUp">
                 <ul>
                     <div class="identify">
-                        <li><a href="identificarUser.html">Identificar</a></li>
+                        <li><a href="identificarUser.html">Escanear</a></li>
                     </div>
                     <div class="pacients">
                         <li><a href="pacientes.html">Pacientes</a></li>
@@ -42,30 +42,14 @@
         </div>
     </header>
 
-    <div class="content">
-        <div class="userInfo">
-            <img src="img/0990fe16f61df266c4fc0923bff98c3b.jpg" alt="Foto de Perfil">
-            <div class="name"></div>
-            <div class="IMP"></div>
-        </div>
-
-        <h2>Recetas</h2>
-        <table>
+    <table id="recetasTable">
+        <thead>
             <tr>
-                <th>Receta N°</th>
-                <th>Fecha</th>
-                <th>Recetó</th>
-                <th>Receta Electrónica</th>
+                <th class="recetasList">Receta</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>07/03/2024</td>
-                <td>Joel Cruz Cruz</td>
-                <td><a href="#"></a></td>
-            </tr>
-        </table>
-        <button class="btnCrearReceta" id="btnCrearReceta">Crear Nueva Receta</button>
-    </div>
+        </thead>
+    </table>
+    <button id="btnCrearReceta">Crear Receta</button>
 </body>
 
 </html>

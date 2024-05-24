@@ -1,7 +1,6 @@
-import { db, auth } from './firebaseConfig.js';
+import { db, auth, file } from './firebaseConfig.js'; // Asegúrate de importar storage
 import { getDoc, doc, addDoc, collection } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
-import { jsPDF } from 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js';
-import { autoTable } from 'https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.24/jspdf.plugin.autotable.min.js';
+import { ref, uploadBytes } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js';
 
 const content = document.querySelector('.content');
 const btnAgregar = document.querySelector('.btnAgregar');
@@ -9,7 +8,7 @@ const btnGuardar = document.querySelector('.btnGuardar');
 
 function crearCampoMedicamento(event) {
     event.preventDefault();
-    
+
     const div = document.createElement('div');
     div.classList.add('medication');
     div.innerHTML = `
@@ -25,7 +24,8 @@ function crearCampoMedicamento(event) {
     deleteButton.addEventListener('click', () => {
         div.remove();
         Swal.fire({
-            title: 'Medicamento Eliminado'
+            title: 'Medicamento Eliminado',
+            icon: 'error'
         });
     });
 }
@@ -63,38 +63,71 @@ btnGuardar.addEventListener('click', async () => {
     }
 
     try {
+
         const user = auth.currentUser;
         const userDoc = await getDoc(doc(db, 'users', user.uid));
         const doctorData = userDoc.data();
-        const doctorName = `${doctorData.name} ${doctorData.lastName}`;
-        const doctorAddress = doctorData.address;
+        const patientIMP = 'imp';
+        const currentDate = new Date().toISOString().split('T')[0];
 
-        const pdf = new jsPDF();
-        pdf.setFontSize(16);
-        pdf.text(`Receta Médica`, 20, 20);
-        pdf.setFontSize(12);
-        pdf.text(`Doctor: ${doctorName}`, 20, 30);
-        pdf.text(`Dirección: ${doctorAddress}`, 20, 40);
+        const docDefinition = {
+            content: [
+                { text: 'Receta Médica', style: 'header' },
+                { text: `Doctor: Doctor`, style: 'subheader' },
+                { text: `Dirección: Direccion`, style: 'subheader' },
+                {
+                    style: 'tableExample',
+                    table: {
+                        body: [
+                            ['#', 'Medicamento', 'Dosis', 'Periodo (Horas)', 'Duración (Días)'],
+                            ...medicamentos.map((med, index) => [
+                                index + 1, med.medicine, med.dosis, med.periodo, med.duracion
+                            ])
+                        ]
+                    }
+                }
+            ],
+            styles: {
+                header: {
+                    fontSize: 18,
+                    bold: true,
+                    margin: [0, 0, 0, 10]
+                },
+                subheader: {
+                    fontSize: 14,
+                    bold: true,
+                    margin: [0, 10, 0, 5]
+                },
+                tableExample: {
+                    margin: [0, 5, 0, 15]
+                },
+                tableHeader: {
+                    bold: true,
+                    fontSize: 13,
+                    color: 'black'
+                }
+            }
+        };
 
-        const tableData = medicamentos.map((med, index) => [
-            index + 1, med.medicine, med.dosis, med.periodo, med.duracion
-        ]);
+        pdfMake.createPdf(docDefinition).getBlob(async (blob) => {
+            const storageRef = ref(file, `recetas/${patientIMP}_${currentDate}.pdf`);
+            await uploadBytes(storageRef, blob);
+            console.log('PDF subido a Firebase Storage con éxito');
 
-        pdf.autoTable({
-            head: [['#', 'Medicamento', 'Dosis', 'Periodo (Horas)', 'Duración (Días)']],
-            body: tableData,
-            startY: 50
+            await addDoc(collection(db, 'recetas'), {
+                medicamentos,
+                doctorId: user.uid,
+                pdfUrl: `recetas/${patientIMP}_${currentDate}.pdf`
+            });
+
+            Swal.fire({
+                title: 'Éxito!',
+                text: 'Receta guardada con éxito.',
+                icon: 'success'
+            });
+
+            content.innerHTML = '';
         });
-
-        pdf.save('receta.pdf');
-
-        await addDoc(collection(db, 'recetas'), { medicamentos, doctorId: user.uid });
-        Swal.fire({
-            title: 'Éxito!',
-            text: 'Receta guardada con éxito.',
-            icon: 'success'
-        });
-        content.innerHTML = ''; // Limpiar la lista de medicamentos después de guardar
     } catch (error) {
         console.error('Error al guardar la receta:', error);
         Swal.fire({
