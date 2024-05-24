@@ -9,17 +9,14 @@ async function mostrarRecetas() {
             throw new Error('No se encontró el elemento recetasList en el DOM.');
         }
 
-        // Obtener referencias a los archivos en Firebase Storage
         const storageRef = ref(file, 'recetas');
 
         const listResult = await listAll(storageRef);
 
-        // Recorrer cada archivo para obtener su URL de descarga y nombre
         await Promise.all(listResult.items.map(async (itemRef, index) => {
             const pdfUrl = await getDownloadURL(itemRef);
             const fileName = itemRef.name;
 
-            // Crear el elemento HTML para mostrar el enlace al PDF en una fila de tabla
             const recetaRow = document.createElement('tr');
             recetaRow.innerHTML = `
                 <th>Receta N°</th>
@@ -28,7 +25,10 @@ async function mostrarRecetas() {
             const recetaContainerRow = document.createElement('tr');
             recetaContainerRow.innerHTML = `
             <td>${index + 1}</td>
-            <td><a href="${pdfUrl}" target="_blank">${fileName}</a></td>`
+            <td>${fileName}</td>
+            <button id="openReceta"><a href="${pdfUrl}">Abrir Receta</a></button>
+            `;
+
             recetasList.appendChild(recetaRow);
             recetasList.appendChild(recetaContainerRow);
         }));

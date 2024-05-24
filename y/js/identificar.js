@@ -1,7 +1,7 @@
 import { db } from './firebaseConfig.js';
 
 const buscarIMP = document.getElementById('btnBuscarIMP');
-const inputIMP = document.getElementById('inputIMP');
+const inputIMP = document.getElementById('IMP');
 
 buscarIMP.addEventListener('click', async () => {
     const imp = inputIMP.value;

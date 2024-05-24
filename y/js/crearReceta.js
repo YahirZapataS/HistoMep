@@ -110,14 +110,14 @@ btnGuardar.addEventListener('click', async () => {
         };
 
         pdfMake.createPdf(docDefinition).getBlob(async (blob) => {
-            const storageRef = ref(file, `recetas/${patientIMP}_${currentDate}.pdf`);
+            const storageRef = ref(file, `recetas/imp_${currentDate}.pdf`);
             await uploadBytes(storageRef, blob);
             console.log('PDF subido a Firebase Storage con éxito');
 
             await addDoc(collection(db, 'recetas'), {
                 medicamentos,
                 doctorId: user.uid,
-                pdfUrl: `recetas/${patientIMP}_${currentDate}.pdf`
+                pdfUrl: `recetas/imp_${currentDate}.pdf`
             });
 
             Swal.fire({

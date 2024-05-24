@@ -31,7 +31,7 @@ async function mostrarPacientes() {
             botonAbrirReceta.textContent = 'Ver Recetas';
             botonAbrirReceta.classList.add('btnAbrirRec');
             botonAbrirReceta.addEventListener('click', async () => {
-                window.location.href = 'crearReceta.html';
+                window.location.href = 'recetas.html';
             });
 
             pacienteCard.appendChild(nombrePacienteyIMP);
@@ -46,6 +46,12 @@ async function mostrarPacientes() {
 }
 
 mostrarPacientes();
+
+const btnDashboard = document.getElementById('btnDashboard');
+btnDashboard.addEventListener('click', async (e) => {
+    e.preventDefault();
+    window.location.replace('dashboard.html');
+})
 
 // Cerrar Sesión
 const btnLogout = document.getElementById('btnLogout');

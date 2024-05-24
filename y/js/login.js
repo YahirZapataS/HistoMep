@@ -1,6 +1,5 @@
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
 import { auth, db } from './firebaseConfig.js';
-import { getDoc, doc } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 
 const btnLogin = document.getElementById('btn_login');
 
@@ -15,7 +14,7 @@ btnLogin.addEventListener('click', async () => {
     try {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         console.log('Usuario autenticado', userCredential.user);
-        window.location.replace("pacientes.html");
+        window.location.href = `dashboard.html?email=${email}`;
     } catch (error) {
         console.log("Error al iniciar sesión", error.messsage);
         Swal.fire({

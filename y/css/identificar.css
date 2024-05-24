@@ -2,8 +2,8 @@ body {
     font-family: "Inter";
     font-style: italic;
     font-weight: bold;
-    margin: 0;
-    padding: 0;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -88,4 +88,55 @@ nav ul li a:hover {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+}
+
+#searchPatient {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 800px;
+    padding: 20px;
+    background-color: #EDF0F9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+#searchPatient h2{
+    font-size: 35px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#searchPatient input {
+    text-align: center;
+    border-color: #0066FF;
+    border-top: #000000;
+    border-left: #000000;
+    border-right: #000000;
+    background-color: #EAEAEA;
+    border-radius: 5px;
+    height: 40px;
+    width: 45%;
+    margin-bottom: 20px;
+}
+
+input:focus {
+    outline: none;
+}
+
+#searchPatient ::placeholder {
+    font-size: 15px;
+}
+
+#btnBuscarIMP {
+    border-radius: 5px;
+    color: #FFFFFF;
+    border-color: #0066FF;
+    background-color: #0066FF;
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 20px;
 }

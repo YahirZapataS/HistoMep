@@ -13,8 +13,6 @@ const querySnapshot = await getDocs(q);
 // Aquí se Muestran los detalles Personales
 async function viewPersonalDetails() {
     try {
-        const querySnapshot = await getDocs(q);
-
         const patientInfoContainer = document.getElementById('patientInfo');
         patientInfoContainer.innerHTML = '';
 
@@ -68,23 +66,44 @@ async function viewRelevantDetails() {
             const heightPatient = document.createElement('div');
             heightPatient.textContent = `Estatura (CM): ${patient.height}`;
             const diabPatient = document.createElement('div');
-            diabPatient.textContent = `Diabético: ${patient.optionD}`;
+            diabPatient.textContent = `Diabético: No`;
             const hiperPatient = document.createElement('div');
-            hiperPatient.textContent = `Hipertenso: ${patient.optionH}`;
+            hiperPatient.textContent = `Hipertenso: No`;
+            const alergPatient = document.createElement('div');
+            alergPatient.textContent = 'Alergias: No';
 
             patientInfo.appendChild(weightPatient);
             patientInfo.appendChild(heightPatient);
             patientInfo.appendChild(diabPatient);
             patientInfo.appendChild(hiperPatient);
+            patientInfo.appendChild(alergPatient);
             patientInfoContainer.appendChild(patientInfo);
-        })
+        });
     } catch (error) {
         console.log("Error al obtener la información del paciente");
     }
 }
 
+async function viewOtherInfo() {
+    try {
+        const patientInfoContainer = document.getElementById('patientOtherInfo');
+        const patientInfo = document.createElement('div');
+        patientInfo.classList.add('patientInformationCard');
+
+        const recentConsult = document.createElement('div');
+        recentConsult.textContent = 'Última consulta: 2024-05-23';
+
+        patientInfo.appendChild(recentConsult);
+        patientInfoContainer.appendChild(patientInfo);
+
+    } catch (error) {
+        console.log('Error al obtener la informacion del paciente');
+    }
+}
+
 viewPersonalDetails();
 viewRelevantDetails();
+viewOtherInfo();
 
 // Btn Volver
 const btnBack = document.getElementById('btnBack');

@@ -15,7 +15,6 @@ body {
     display: flex;
 }
 
-
 header {
     color: black;
     padding: 10px 0;
@@ -90,86 +89,72 @@ nav ul li a:hover {
     display: block;
 }
 
-.form-flex input {
-    margin-top: 20px;
-    display: inline-block;
+h1 {
+    font-size: 30px;
+    color: #333;
+}
+
+.doctorInfo {
+    margin-bottom: 20px;
+}
+
+.doctorInfo p {
+    font-size: 18px;
+    color: #555;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+#doctorInfoContainer {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding-left: 10px;
+    font-size: 20px;
+    flex-wrap: wrap;
+    margin-left: 50px;
+}
+
+.doctorInfo {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: justify;
     border-color: #0066FF;
     border-top: #000000;
     border-left: #000000;
     border-right: #000000;
     background-color: #EAEAEA;
-    border-radius: 5px;
-    height: 40px;
-    width: 30%;
+    height: auto;
+    width: auto;
     margin-bottom: 20px;
-    outline: none;
-    text-align: center;
-    margin-left: 250px;
 }
 
-.content input {
-    margin-top: 20px;
-    display: inline-block;
-    border-color: #0066FF;
-    border-top: #000000;
-    border-left: #000000;
-    border-right: #000000;
-    background-color: #EAEAEA;
+#btnLogout {
     border-radius: 5px;
-    height: 40px;
-    width: 30%;
-    margin-bottom: 20px;
-    outline: none;
-    text-align: center;
-    margin-left: 250px;
-}
-
-.btnAgregar {
+    color: #FFFFFF;
+    border-color: #0066FF;
     background-color: #0066FF;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    font-size: 16px;
-    margin: 4px 2px;
+    width: auto;
+    height: auto;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 15px;
     cursor: pointer;
-    border-radius: 5px;
-    border-color: #0066FF;
-    width: 30%;
-    height: 40px;
-    font-weight: bold;
-    margin-left: 250px;
 }
 
-.btnGuardar {
-    background-color: #0066FF;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+#btnDashboard {
     border-radius: 5px;
+    color: #FFFFFF;
     border-color: #0066FF;
-    width: 30%;
-    height: 40px;
-    font-weight: bold;
-    margin-left: 250px;
-    margin-top: 20px;
-}
-
-.btnDelete {
     background-color: #0066FF;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
+    width: auto;
+    height: auto;
+    font-size: 15px;
+    font-weight: normal;
+    margin: 15px;
     cursor: pointer;
-    border-radius: 5px;
-    border-color: #0066FF;
-    width: 10%;
-    height: 40px;
-    font-weight: bold;
 }

@@ -19,7 +19,7 @@
 
 <body>
 
-    <img src="img/logo.png">
+    <img id="logo_marca" src="img/logo.png">
     <header>
         <div class="slideUp">
             <nav class="slideUp">
@@ -42,15 +42,26 @@
                 </ul>
             </nav>
         </div>
+        <div class="menuProfile">
+            <img id="imgProfile" src="img/0990fe16f61df266c4fc0923bff98c3b.jpg">
+            <div class="menuProfile_content">
+                <a id="btnLogout">Cerrar Sesión</a>
+            </div>
+        </div>
     </header>
     <h1>Historial Médico</h1>
     <div class="container">
         <h2>Datos Personales</h2>
         <div id="patientInfo" class="patientInfo"></div>
+        <button class="viewPersonalInfo">Ver datos completos</button>
     </div>
     <div class="container">
         <h2>Datos Relevantes</h2>
         <div id="patientRelevant" class="patientRelevantInfo"></div>
+    </div>
+    <div class="container">
+        <h2>Otros Datos</h2>
+        <div id="patientOtherInfo" class="patientOtherInfo"></div>
     </div>
     <div class="btnBack">
         <button id="btnBack" type="button">Volver</button>
