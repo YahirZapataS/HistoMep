@@ -95,13 +95,16 @@ nav ul li a:hover {
 }
 
 .pacientesContainer {
-    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
-    padding-left: 10px;
     font-size: 20px;
     flex-wrap: wrap;
-    margin-left: 50px;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px 10px;
+    max-width: 1400px;
+    display: flex;
 }
 
 .pacienteCard {
@@ -117,7 +120,7 @@ nav ul li a:hover {
     background-color: #EAEAEA;
     height: 40px;
     width: 45%;
-    margin-bottom: 20px;
+    margin-top: 50px;
 }
 
 .pacienteCard button {

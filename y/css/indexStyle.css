@@ -2,85 +2,89 @@ body {
     font-family: "Inter";
     font-style: italic;
     font-weight: bold;
-  }
-  
-  .container {
-      text-align: center;
-      max-width: 400px;
-      margin: 0 auto;
-      margin-top: 100px;
-      padding: 100px;
-      border: 1px solid #ccc;
-      border-radius: 15px;
-      background-color: #EDF0F9;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .container h2 {
-      text-align: center;
-      font-size: 35px;
-  }
-  
-  .container input {
-      text-align: center;
-      border-color: #0066FF;
-      border-top: #000000;
-      border-left: #000000;
-      border-right: #000000;
-      background-color: #EAEAEA;
-      border-radius: 5px;
-      width: 300px;
-      height: 40px;
-  }
-  
-  .container input[type="checkbox"] {
-      display: inline;
-      align-items: center;
-      width: 20px;
-      height: 20px;
-  }
-  
-  input:focus {
-      outline: none;
-  }
-  
-  .container ::placeholder {
-      font-size: 20px;
-  }
-  
-  .container button {
-      text-align: center;
-      color: #FFFFFF;
-      border-radius: 5px;
-      border-color: #0066FF;
-      background-color: #0066FF;
-      width: 200px;
-      height: 40px;
-      font-size: 15px;
-      font-weight: bold;
-  }
-  
-  .container #forgotpass {
-      color: #000000;
-      text-decoration: none;
-  }
-  
-  .container #forgotpass :hover {
-      text-decoration: underline;
-  }
-  
-  .container p {
-      text-align: center;
-  }
-  
-  .logo_marca {
-      width: 300px;
-      height: auto;
-      align-items: center;
-      margin: 20px;
-  }
-  
-  a {
-      text-decoration: none;
-      color: white;
-  }
+}
+
+.container {
+    text-align: center;
+    max-width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    padding: 100px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    background-color: #EDF0F9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container h2 {
+    text-align: center;
+    font-size: 35px;
+}
+
+.container input {
+    text-align: center;
+    border-color: #0066FF;
+    border-top: #000000;
+    border-left: #000000;
+    border-right: #000000;
+    background-color: #EAEAEA;
+    border-radius: 5px;
+    width: 300px;
+    height: 40px;
+}
+
+.container input[type="checkbox"] {
+    display: inline;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.container ::placeholder {
+    font-size: 20px;
+}
+
+.container button {
+    text-align: center;
+    color: #FFFFFF;
+    border-radius: 5px;
+    border-color: #0066FF;
+    background-color: #0066FF;
+    width: 200px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.container #forgotpass {
+    color: #000000;
+    text-decoration: none;
+}
+
+.container #forgotpass :hover {
+    text-decoration: underline;
+}
+
+.container p {
+    text-align: center;
+}
+
+.logo_marca {
+    width: 300px;
+    height: auto;
+    align-items: center;
+    margin: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover {
+    color: gray;
+}

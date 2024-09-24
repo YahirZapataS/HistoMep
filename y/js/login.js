@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-import { auth, db } from './firebaseConfig.js';
+import { auth } from './firebaseConfig.js';
 
 const btnLogin = document.getElementById('btn_login');
 
@@ -17,10 +17,7 @@ btnLogin.addEventListener('click', async () => {
         window.location.href = `dashboard.html?email=${email}`;
     } catch (error) {
         console.log("Error al iniciar sesión", error.messsage);
-        Swal.fire({
-            title: 'Error!',
-            text: 'Correo o contraseña incorrectos. Intentelo de nuevo.'
-        });
+        showAlert('Error!', 'Usuario o contraseña incorrectos.',  'error');
     }
 });
 
@@ -47,3 +44,11 @@ showPasswordCheckbox.addEventListener('change', function () {
         password.type = 'password';
     }
 });
+
+function showAlert(title, text, icon) {
+    Swal.fire({
+        title: title,
+        text: text,
+        icon:  icon
+    });
+}

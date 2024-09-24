@@ -47,12 +47,6 @@ async function mostrarPacientes() {
 
 mostrarPacientes();
 
-const btnDashboard = document.getElementById('btnDashboard');
-btnDashboard.addEventListener('click', async (e) => {
-    e.preventDefault();
-    window.location.replace('dashboard.html');
-})
-
 // Cerrar Sesión
 const btnLogout = document.getElementById('btnLogout');
 btnLogout.addEventListener('click', async (e) => {

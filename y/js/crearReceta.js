@@ -1,5 +1,5 @@
-import { db, auth, file } from './firebaseConfig.js'; // Asegúrate de importar storage
-import { getDoc, doc, addDoc, collection } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
+import { db, auth, file } from './firebaseConfig.js';
+import { getDoc, doc, addDoc, collection, getDocs } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js';
 import { ref, uploadBytes } from 'https://www.gstatic.com/firebasejs/10.9.0/firebase-storage.js';
 
 const content = document.querySelector('.content');
@@ -34,7 +34,6 @@ btnAgregar.addEventListener('click', crearCampoMedicamento);
 
 btnGuardar.addEventListener('click', async () => {
     const medicamentosInputs = content.querySelectorAll('.medication');
-
     const medicamentos = [];
 
     medicamentosInputs.forEach(medication => {
@@ -63,12 +62,17 @@ btnGuardar.addEventListener('click', async () => {
     }
 
     try {
-
         const user = auth.currentUser;
         const userDoc = await getDoc(doc(db, 'users', user.uid));
         const doctorData = userDoc.data();
-        const patientIMP = 'imp';
         const currentDate = new Date().toISOString().split('T')[0];
+
+        // Obtener el ID más alto existente
+        const recetasSnapshot = await getDocs(collection(db, 'recetas'));
+        const ids = recetasSnapshot.docs.map(doc => parseInt(doc.id.split('_')[0])).filter(id => !isNaN(id));
+        const newId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
+
+        console.log(`Nuevo ID generado: ${newId}`); // Mensaje de depuración
 
         const docDefinition = {
             content: [
@@ -100,40 +104,45 @@ btnGuardar.addEventListener('click', async () => {
                 },
                 tableExample: {
                     margin: [0, 5, 0, 15]
-                },
-                tableHeader: {
-                    bold: true,
-                    fontSize: 13,
-                    color: 'black'
                 }
             }
         };
 
         pdfMake.createPdf(docDefinition).getBlob(async (blob) => {
-            const storageRef = ref(file, `recetas/imp_${currentDate}.pdf`);
+            const storageRef = ref(file, `recetas/${newId}_${currentDate}.pdf`);
             await uploadBytes(storageRef, blob);
             console.log('PDF subido a Firebase Storage con éxito');
 
             await addDoc(collection(db, 'recetas'), {
                 medicamentos,
                 doctorId: user.uid,
-                pdfUrl: `recetas/imp_${currentDate}.pdf`
+                pdfUrl: `recetas/${newId}_${currentDate}.pdf`
             });
 
-            Swal.fire({
-                title: 'Éxito!',
-                text: 'Receta guardada con éxito.',
-                icon: 'success'
-            });
-
+            showAlertWithRedirection('Listo!', 'Receta creada con éxito', 'success');
             content.innerHTML = '';
         });
     } catch (error) {
         console.error('Error al guardar la receta:', error);
         Swal.fire({
             title: 'Error!',
-            text: 'Receta no guardada. Intentelo de nuevo.',
+            text: 'Receta no guardada. Inténtelo de nuevo.',
             icon: 'error'
         });
     }
 });
+
+
+
+function showAlertWithRedirection(title, text, icon) {
+    Swal.fire({
+        title: title,
+        text: text,
+        icon: icon,
+        confirmButtonText: 'OK'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = 'recetas.html';
+        }
+    });
+}
